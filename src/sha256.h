@@ -10,6 +10,8 @@
 
 #if defined(__aarch64__)
 # define sha256_block_data_order blst_sha256_block_armv8
+#elif defined(_WIN64) || defined(__CYGWIN__) || defined(__APPLE__)
+# define sha256_block_data_order blst_sha256_block_data_order_ssse3
 #else
 # define sha256_block_data_order blst_sha256_block_data_order
 #endif
