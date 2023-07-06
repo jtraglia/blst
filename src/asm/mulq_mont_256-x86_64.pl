@@ -48,10 +48,8 @@ $code.=<<___;
 .align	32
 mul_mont_sparse_256:
 .cfi_startproc
-#ifdef __BLST_PORTABLE__
 	testl	\$1, __blst_platform_cap(%rip)
 	jnz	mul_mont_sparse_256\$1
-#endif
 	push	%rbp
 .cfi_push	%rbp
 	push	%rbx
@@ -107,10 +105,8 @@ mul_mont_sparse_256:
 .align	32
 sqr_mont_sparse_256:
 .cfi_startproc
-#ifdef __BLST_PORTABLE__
 	testl	\$1, __blst_platform_cap(%rip)
 	jnz	sqr_mont_sparse_256\$1
-#endif
 	push	%rbp
 .cfi_push	%rbp
 	push	%rbx
@@ -330,10 +326,8 @@ $code.=<<___;
 .align	32
 from_mont_256:
 .cfi_startproc
-#ifdef __BLST_PORTABLE__
 	testl	\$1, __blst_platform_cap(%rip)
 	jnz	from_mont_256\$1
-#endif
 	push	%rbp
 .cfi_push	%rbp
 	push	%rbx
@@ -400,10 +394,8 @@ from_mont_256:
 .align	32
 redc_mont_256:
 .cfi_startproc
-#ifdef __BLST_PORTABLE__
 	testl	\$1, __blst_platform_cap(%rip)
 	jnz	redc_mont_256\$1
-#endif
 	push	%rbp
 .cfi_push	%rbp
 	push	%rbx

@@ -12,8 +12,6 @@ cargo test
 cargo bench
 ```
 
-If the target application crashes with an "illegal instruction" exception [after copying to an older system], activate `portable` feature when building blst. Conversely, if you compile on an older Intel system, but will execute the binary on a newer one, consider instead activating <nobr>`force-adx`</nobr> feature. Though keep in mind that [cc](https://crates.io/crates/cc) passes the value of `CFLAGS` environment variable to the C compiler, and if set to contain specific flags, it can interfere with feature selection. <nobr>`-D__BLST_PORTABLE__`</nobr> and <nobr>`-D__ADX__`</nobr> are the said features' equivalents.
-
 To compile for WebAssembly, your clang has to recognize `--target=wasm32`. Alternatively you can build your project with `CC` environment variable set to `emcc`, the [Emscripten compiler](https://emscripten.org), and `AR` set to `emar`, naturally, with both commands available on your `PATH`.
 
 While `cargo test`'s dependencies happen to require at least Rust 1.56, the library by itself can be compiled with earlier compiler versions. Though it takes some version pinning in the dependent's Cargo.toml, `zeroize` to "=1.3.0" and `zeroize_derive` to "=1.3.3".

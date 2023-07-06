@@ -20,10 +20,8 @@ $L$SEH_begin_ct_inverse_mod_383::
 	mov	rsi,rdx
 	mov	rdx,r8
 	mov	rcx,r9
-ifdef __BLST_PORTABLE__
 	test	DWORD PTR[__blst_platform_cap],1
 	jnz	ct_inverse_mod_383$1
-endif
 	push	rbp
 
 	push	rbx

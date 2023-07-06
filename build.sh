@@ -28,11 +28,7 @@ PERL=${PERL:-perl}
 unset cflags shared dll
 
 case `uname -s` in
-    Darwin)	flavour=macosx
-                if [ "`sysctl -n hw.optional.adx 2>/dev/null`" = "1" ]; then
-                    cflags="-D__ADX__"
-                fi
-                ;;
+    Darwin)	flavour=macosx;;
     CYGWIN*)	flavour=mingw64;;
     MINGW*)	flavour=mingw64;;
     *)		flavour=elf;;
@@ -81,9 +77,6 @@ AR=${AR:-${CROSS_COMPILE}ar}
 
 if (${CC} ${CFLAGS} -dM -E -x c /dev/null) 2>/dev/null | grep -q x86_64; then
     cflags="$cflags -mno-avx" # avoid costly transitions
-    if (grep -q -e '^flags.*\badx\b' /proc/cpuinfo) 2>/dev/null; then
-        cflags="-D__ADX__ $cflags"
-    fi
 fi
 
 CFLAGS="$CFLAGS $cflags"

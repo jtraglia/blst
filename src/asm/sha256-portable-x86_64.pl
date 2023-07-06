@@ -144,10 +144,8 @@ $func:
 .cfi_push	%rbp
 	mov	%rsp,%rbp
 .cfi_def_cfa_register	%rbp
-#ifdef __BLST_PORTABLE__
 	testl	\$2,__blst_platform_cap(%rip)
 	jnz	.L${func}\$2
-#endif
 	push	%rbx
 .cfi_push	%rbx
 	push	%r12
@@ -245,94 +243,7 @@ $code.=<<___;
 .cfi_endproc
 .size	$func,.-$func
 
-#ifndef __BLST_PORTABLE__
-.align	64
-.type	$TABLE,\@object
-$TABLE:
-	.long	0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5
-	.long	0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5
-	.long	0xd807aa98,0x12835b01,0x243185be,0x550c7dc3
-	.long	0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174
-	.long	0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc
-	.long	0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da
-	.long	0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7
-	.long	0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967
-	.long	0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13
-	.long	0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85
-	.long	0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3
-	.long	0xd192e819,0xd6990624,0xf40e3585,0x106aa070
-	.long	0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5
-	.long	0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3
-	.long	0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208
-	.long	0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2
-
-	.asciz	"SHA256 block transform for x86_64, CRYPTOGAMS by \@dot-asm"
 ___
-{
-my ($out,$inp,$len) = $win64 ? ("%rcx","%rdx","%r8") :  # Win64 order
-                               ("%rdi","%rsi","%rdx");  # Unix order
-$code.=<<___;
-.globl	${pre}sha256_emit
-.hidden	${pre}sha256_emit
-.type	${pre}sha256_emit,\@abi-omnipotent
-.align	16
-${pre}sha256_emit:
-	mov	0($inp), %r8
-	mov	8($inp), %r9
-	mov	16($inp), %r10
-	bswap	%r8
-	mov	24($inp), %r11
-	bswap	%r9
-	mov	%r8d, 4($out)
-	bswap	%r10
-	mov	%r9d, 12($out)
-	bswap	%r11
-	mov	%r10d, 20($out)
-	shr	\$32, %r8
-	mov	%r11d, 28($out)
-	shr	\$32, %r9
-	mov	%r8d, 0($out)
-	shr	\$32, %r10
-	mov	%r9d, 8($out)
-	shr	\$32, %r11
-	mov	%r10d, 16($out)
-	mov	%r11d, 24($out)
-	ret
-.size	${pre}sha256_emit,.-${pre}sha256_emit
-
-.globl	${pre}sha256_bcopy
-.hidden	${pre}sha256_bcopy
-.type	${pre}sha256_bcopy,\@abi-omnipotent
-.align	16
-${pre}sha256_bcopy:
-	sub	$inp, $out
-.Loop_bcopy:
-	movzb	($inp), %eax
-	lea	1($inp), $inp
-	mov	%al, -1($out,$inp)
-	dec	$len
-	jnz	.Loop_bcopy
-	ret
-.size	${pre}sha256_bcopy,.-${pre}sha256_bcopy
-
-.globl	${pre}sha256_hcopy
-.hidden	${pre}sha256_hcopy
-.type	${pre}sha256_hcopy,\@abi-omnipotent
-.align	16
-${pre}sha256_hcopy:
-	mov	0($inp), %r8
-	mov	8($inp), %r9
-	mov	16($inp), %r10
-	mov	24($inp), %r11
-	mov	%r8, 0($out)
-	mov	%r9, 8($out)
-	mov	%r10, 16($out)
-	mov	%r11, 24($out)
-	ret
-.size	${pre}sha256_hcopy,.-${pre}sha256_hcopy
-#endif
-___
-}
 
 foreach (split("\n",$code)) {
 	s/\`([^\`]*)\`/eval $1/geo;

@@ -188,10 +188,8 @@ mul_mont_384x:
 	.byte	0xf3,0x0f,0x1e,0xfa
 
 
-#ifdef __BLST_PORTABLE__
 	testl	$1,__blst_platform_cap(%rip)
 	jnz	mul_mont_384x$1
-#endif
 	pushq	%rbp
 .cfi_adjust_cfa_offset	8
 .cfi_offset	%rbp,-16
@@ -308,10 +306,8 @@ sqr_mont_384x:
 	.byte	0xf3,0x0f,0x1e,0xfa
 
 
-#ifdef __BLST_PORTABLE__
 	testl	$1,__blst_platform_cap(%rip)
 	jnz	sqr_mont_384x$1
-#endif
 	pushq	%rbp
 .cfi_adjust_cfa_offset	8
 .cfi_offset	%rbp,-16
@@ -436,10 +432,8 @@ mul_382x:
 	.byte	0xf3,0x0f,0x1e,0xfa
 
 
-#ifdef __BLST_PORTABLE__
 	testl	$1,__blst_platform_cap(%rip)
 	jnz	mul_382x$1
-#endif
 	pushq	%rbp
 .cfi_adjust_cfa_offset	8
 .cfi_offset	%rbp,-16
@@ -575,10 +569,8 @@ sqr_382x:
 	.byte	0xf3,0x0f,0x1e,0xfa
 
 
-#ifdef __BLST_PORTABLE__
 	testl	$1,__blst_platform_cap(%rip)
 	jnz	sqr_382x$1
-#endif
 	pushq	%rbp
 .cfi_adjust_cfa_offset	8
 .cfi_offset	%rbp,-16
@@ -712,10 +704,8 @@ mul_384:
 	.byte	0xf3,0x0f,0x1e,0xfa
 
 
-#ifdef __BLST_PORTABLE__
 	testl	$1,__blst_platform_cap(%rip)
 	jnz	mul_384$1
-#endif
 	pushq	%rbp
 .cfi_adjust_cfa_offset	8
 .cfi_offset	%rbp,-16
@@ -1040,10 +1030,8 @@ sqr_384:
 	.byte	0xf3,0x0f,0x1e,0xfa
 
 
-#ifdef __BLST_PORTABLE__
 	testl	$1,__blst_platform_cap(%rip)
 	jnz	sqr_384$1
-#endif
 	pushq	%rbp
 .cfi_adjust_cfa_offset	8
 .cfi_offset	%rbp,-16
@@ -1290,10 +1278,8 @@ sqr_mont_384:
 	.byte	0xf3,0x0f,0x1e,0xfa
 
 
-#ifdef __BLST_PORTABLE__
 	testl	$1,__blst_platform_cap(%rip)
 	jnz	sqr_mont_384$1
-#endif
 	pushq	%rbp
 .cfi_adjust_cfa_offset	8
 .cfi_offset	%rbp,-16
@@ -1361,10 +1347,8 @@ redc_mont_384:
 	.byte	0xf3,0x0f,0x1e,0xfa
 
 
-#ifdef __BLST_PORTABLE__
 	testl	$1,__blst_platform_cap(%rip)
 	jnz	redc_mont_384$1
-#endif
 	pushq	%rbp
 .cfi_adjust_cfa_offset	8
 .cfi_offset	%rbp,-16
@@ -1422,10 +1406,8 @@ from_mont_384:
 	.byte	0xf3,0x0f,0x1e,0xfa
 
 
-#ifdef __BLST_PORTABLE__
 	testl	$1,__blst_platform_cap(%rip)
 	jnz	from_mont_384$1
-#endif
 	pushq	%rbp
 .cfi_adjust_cfa_offset	8
 .cfi_offset	%rbp,-16
@@ -1857,10 +1839,8 @@ sgn0_pty_mont_384:
 	.byte	0xf3,0x0f,0x1e,0xfa
 
 
-#ifdef __BLST_PORTABLE__
 	testl	$1,__blst_platform_cap(%rip)
 	jnz	sgn0_pty_mont_384$1
-#endif
 	pushq	%rbp
 .cfi_adjust_cfa_offset	8
 .cfi_offset	%rbp,-16
@@ -1939,10 +1919,8 @@ sgn0_pty_mont_384x:
 	.byte	0xf3,0x0f,0x1e,0xfa
 
 
-#ifdef __BLST_PORTABLE__
 	testl	$1,__blst_platform_cap(%rip)
 	jnz	sgn0_pty_mont_384x$1
-#endif
 	pushq	%rbp
 .cfi_adjust_cfa_offset	8
 .cfi_offset	%rbp,-16
@@ -2070,10 +2048,8 @@ mul_mont_384:
 	.byte	0xf3,0x0f,0x1e,0xfa
 
 
-#ifdef __BLST_PORTABLE__
 	testl	$1,__blst_platform_cap(%rip)
 	jnz	mul_mont_384$1
-#endif
 	pushq	%rbp
 .cfi_adjust_cfa_offset	8
 .cfi_offset	%rbp,-16
@@ -2738,10 +2714,8 @@ sqr_n_mul_mont_384:
 	.byte	0xf3,0x0f,0x1e,0xfa
 
 
-#ifdef __BLST_PORTABLE__
 	testl	$1,__blst_platform_cap(%rip)
 	jnz	sqr_n_mul_mont_384$1
-#endif
 	pushq	%rbp
 .cfi_adjust_cfa_offset	8
 .cfi_offset	%rbp,-16
@@ -2830,10 +2804,8 @@ sqr_n_mul_mont_383:
 	.byte	0xf3,0x0f,0x1e,0xfa
 
 
-#ifdef __BLST_PORTABLE__
 	testl	$1,__blst_platform_cap(%rip)
 	jnz	sqr_n_mul_mont_383$1
-#endif
 	pushq	%rbp
 .cfi_adjust_cfa_offset	8
 .cfi_offset	%rbp,-16
@@ -3495,10 +3467,8 @@ sqr_mont_382x:
 	.byte	0xf3,0x0f,0x1e,0xfa
 
 
-#ifdef __BLST_PORTABLE__
 	testl	$1,__blst_platform_cap(%rip)
 	jnz	sqr_mont_382x$1
-#endif
 	pushq	%rbp
 .cfi_adjust_cfa_offset	8
 .cfi_offset	%rbp,-16

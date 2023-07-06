@@ -124,56 +124,6 @@ fn main() {
     } else {
         cc.define("__BLST_NO_ASM__", None);
     }
-    match (cfg!(feature = "portable"), cfg!(feature = "force-adx")) {
-        (true, false) => {
-            println!("Compiling in portable mode without ISA extensions");
-            cc.define("__BLST_PORTABLE__", None);
-        }
-        (false, true) => {
-            if target_arch.eq("x86_64") {
-                println!("Enabling ADX support via `force-adx` feature");
-                cc.define("__ADX__", None);
-            } else {
-                println!("`force-adx` is ignored for non-x86_64 targets");
-            }
-        }
-        (false, false) => {
-            if target_arch.eq("x86_64") {
-                // If target-cpu is specified on the rustc command line,
-                // then obey the resulting target-features.
-                if env::var("CARGO_ENCODED_RUSTFLAGS")
-                    .unwrap_or_default()
-                    .contains("target-cpu=")
-                {
-                    let feat_list = env::var("CARGO_CFG_TARGET_FEATURE")
-                        .unwrap_or_default();
-                    let features: Vec<_> = feat_list.split(',').collect();
-                    if !features.contains(&"ssse3") {
-                        println!(
-                            "Compiling in portable mode without ISA extensions"
-                        );
-                        cc.define("__BLST_PORTABLE__", None);
-                    } else if features.contains(&"adx") {
-                        println!(
-                            "Enabling ADX because it was set as target-feature"
-                        );
-                        cc.define("__ADX__", None);
-                    }
-                } else {
-                    #[cfg(target_arch = "x86_64")]
-                    if std::is_x86_feature_detected!("adx") {
-                        println!(
-                            "Enabling ADX because it was detected on the host"
-                        );
-                        cc.define("__ADX__", None);
-                    }
-                }
-            }
-        }
-        (true, true) => panic!(
-            "Cannot compile with both `portable` and `force-adx` features"
-        ),
-    }
     if env::var("CARGO_CFG_TARGET_ENV").unwrap().eq("msvc") {
         cc.flag("-Zl");
     }

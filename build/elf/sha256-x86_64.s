@@ -250,11 +250,11 @@ blst_sha256_block_data_order_shaext:
 	.byte	0xf3,0xc3
 .cfi_endproc	
 .size	blst_sha256_block_data_order_shaext,.-blst_sha256_block_data_order_shaext
-.globl	blst_sha256_block_data_order
-.hidden	blst_sha256_block_data_order
-.type	blst_sha256_block_data_order,@function
+.globl	blst_sha256_block_data_order_ssse3
+.hidden	blst_sha256_block_data_order_ssse3
+.type	blst_sha256_block_data_order_ssse3,@function
 .align	64
-blst_sha256_block_data_order:
+blst_sha256_block_data_order_ssse3:
 .cfi_startproc
 	.byte	0xf3,0x0f,0x1e,0xfa
 
@@ -1374,7 +1374,7 @@ blst_sha256_block_data_order:
 .cfi_restore	%rbx
 	.byte	0xf3,0xc3
 .cfi_endproc	
-.size	blst_sha256_block_data_order,.-blst_sha256_block_data_order
+.size	blst_sha256_block_data_order_ssse3,.-blst_sha256_block_data_order_ssse3
 .globl	blst_sha256_emit
 .hidden	blst_sha256_emit
 .type	blst_sha256_emit,@function

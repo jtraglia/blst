@@ -334,11 +334,11 @@ my @X = map("%xmm$_",(0..3));
 my ($t0,$t1,$t2,$t3, $t4,$t5) = map("%xmm$_",(4..9));
 
 $code.=<<___;
-.globl	${func}
-.hidden	${func}
-.type	${func},\@function,3,"unwind"
+.globl	${pre}sha256_block_data_order_ssse3
+.hidden	${pre}sha256_block_data_order_ssse3
+.type	${pre}sha256_block_data_order_ssse3,\@function,3,"unwind"
 .align	64
-${func}:
+${pre}sha256_block_data_order_ssse3:
 .cfi_startproc
 	push	%rbp
 .cfi_push	%rbp
@@ -690,7 +690,7 @@ $code.=<<___;
 .cfi_epilogue
 	ret
 .cfi_endproc
-.size	${func},.-${func}
+.size	${pre}sha256_block_data_order_ssse3,.-${pre}sha256_block_data_order_ssse3
 ___
 }
 }}}

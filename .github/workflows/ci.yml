@@ -96,9 +96,6 @@ jobs:
       shell: bash
       run: |
         go version
-        if ! (grep -q -e '^flags.*\badx\b' /proc/cpuinfo) 2>/dev/null; then
-            export CGO_CFLAGS="-O -D__BLST_PORTABLE__"
-        fi
         cd bindings/go
         go test -test.v
 

@@ -66,27 +66,7 @@ typedef byte pow256[256/8];
  */
 typedef limb_t bool_t;
 
-/*
- * Assembly subroutines...
- */
-#if defined(__ADX__) /* e.g. -march=broadwell */ && !defined(__BLST_PORTABLE__)\
-                                                 && !defined(__BLST_NO_ASM__)
-# define mul_mont_sparse_256 mulx_mont_sparse_256
-# define sqr_mont_sparse_256 sqrx_mont_sparse_256
-# define from_mont_256 fromx_mont_256
-# define redc_mont_256 redcx_mont_256
-# define mul_mont_384 mulx_mont_384
-# define sqr_mont_384 sqrx_mont_384
-# define sqr_n_mul_mont_384 sqrx_n_mul_mont_384
-# define sqr_n_mul_mont_383 sqrx_n_mul_mont_383
-# define mul_384 mulx_384
-# define sqr_384 sqrx_384
-# define redc_mont_384 redcx_mont_384
-# define from_mont_384 fromx_mont_384
-# define sgn0_pty_mont_384 sgn0x_pty_mont_384
-# define sgn0_pty_mont_384x sgn0x_pty_mont_384x
-# define ct_inverse_mod_383 ctx_inverse_mod_383
-#elif defined(__BLST_NO_ASM__)
+#if defined(__BLST_NO_ASM__)
 # define ct_inverse_mod_383 ct_inverse_mod_384
 #endif
 
@@ -142,14 +122,6 @@ void ct_inverse_mod_383(vec768 ret, const vec384 inp, const vec384 mod,
 void ct_inverse_mod_256(vec512 ret, const vec256 inp, const vec256 mod,
                                                       const vec256 modx);
 bool_t ct_is_square_mod_384(const vec384 inp, const vec384 mod);
-
-#if defined(__ADX__) /* e.g. -march=broadwell */ && !defined(__BLST_PORTABLE__)
-# define mul_mont_384x mulx_mont_384x
-# define sqr_mont_384x sqrx_mont_384x
-# define sqr_mont_382x sqrx_mont_382x
-# define mul_382x mulx_382x
-# define sqr_382x sqrx_382x
-#endif
 
 void mul_mont_384x(vec384x ret, const vec384x a, const vec384x b,
                    const vec384 p, limb_t n0);

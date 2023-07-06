@@ -19,10 +19,8 @@ blst_sha256_block_data_order:
 	movq	%rcx,%rdi
 	movq	%rdx,%rsi
 	movq	%r8,%rdx
-#ifdef __BLST_PORTABLE__
 	testl	$2,__blst_platform_cap(%rip)
 	jnz	.Lblst_sha256_block_data_order$2
-#endif
 	pushq	%rbx
 
 	pushq	%r12
@@ -1658,94 +1656,6 @@ blst_sha256_block_data_order:
 	.byte	0xf3,0xc3
 
 .LSEH_end_blst_sha256_block_data_order:
-
-#ifndef __BLST_PORTABLE__
-.p2align	6
-
-K256:
-.long	0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5
-.long	0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5
-.long	0xd807aa98,0x12835b01,0x243185be,0x550c7dc3
-.long	0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174
-.long	0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc
-.long	0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da
-.long	0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7
-.long	0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967
-.long	0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13
-.long	0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85
-.long	0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3
-.long	0xd192e819,0xd6990624,0xf40e3585,0x106aa070
-.long	0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5
-.long	0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3
-.long	0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208
-.long	0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2
-
-.byte	83,72,65,50,53,54,32,98,108,111,99,107,32,116,114,97,110,115,102,111,114,109,32,102,111,114,32,120,56,54,95,54,52,44,32,67,82,89,80,84,79,71,65,77,83,32,98,121,32,64,100,111,116,45,97,115,109,0
-.globl	blst_sha256_emit
-
-.def	blst_sha256_emit;	.scl 2;	.type 32;	.endef
-.p2align	4
-blst_sha256_emit:
-	.byte	0xf3,0x0f,0x1e,0xfa
-
-	movq	0(%rdx),%r8
-	movq	8(%rdx),%r9
-	movq	16(%rdx),%r10
-	bswapq	%r8
-	movq	24(%rdx),%r11
-	bswapq	%r9
-	movl	%r8d,4(%rcx)
-	bswapq	%r10
-	movl	%r9d,12(%rcx)
-	bswapq	%r11
-	movl	%r10d,20(%rcx)
-	shrq	$32,%r8
-	movl	%r11d,28(%rcx)
-	shrq	$32,%r9
-	movl	%r8d,0(%rcx)
-	shrq	$32,%r10
-	movl	%r9d,8(%rcx)
-	shrq	$32,%r11
-	movl	%r10d,16(%rcx)
-	movl	%r11d,24(%rcx)
-	.byte	0xf3,0xc3
-
-
-.globl	blst_sha256_bcopy
-
-.def	blst_sha256_bcopy;	.scl 2;	.type 32;	.endef
-.p2align	4
-blst_sha256_bcopy:
-	.byte	0xf3,0x0f,0x1e,0xfa
-
-	subq	%rdx,%rcx
-.Loop_bcopy:
-	movzbl	(%rdx),%eax
-	leaq	1(%rdx),%rdx
-	movb	%al,-1(%rcx,%rdx,1)
-	decq	%r8
-	jnz	.Loop_bcopy
-	.byte	0xf3,0xc3
-
-
-.globl	blst_sha256_hcopy
-
-.def	blst_sha256_hcopy;	.scl 2;	.type 32;	.endef
-.p2align	4
-blst_sha256_hcopy:
-	.byte	0xf3,0x0f,0x1e,0xfa
-
-	movq	0(%rdx),%r8
-	movq	8(%rdx),%r9
-	movq	16(%rdx),%r10
-	movq	24(%rdx),%r11
-	movq	%r8,0(%rcx)
-	movq	%r9,8(%rcx)
-	movq	%r10,16(%rcx)
-	movq	%r11,24(%rcx)
-	.byte	0xf3,0xc3
-
-#endif
 .section	.pdata
 .p2align	2
 .rva	.LSEH_begin_blst_sha256_block_data_order

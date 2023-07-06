@@ -233,10 +233,8 @@ $code.=<<___;
 .align	32
 mul_mont_384x:
 .cfi_startproc
-#ifdef __BLST_PORTABLE__
 	testl	\$1, __blst_platform_cap(%rip)
 	jnz	mul_mont_384x\$1
-#endif
 	push	%rbp
 .cfi_push	%rbp
 	push	%rbx
@@ -350,10 +348,8 @@ $code.=<<___;
 .align	32
 sqr_mont_384x:
 .cfi_startproc
-#ifdef __BLST_PORTABLE__
 	testl	\$1, __blst_platform_cap(%rip)
 	jnz	sqr_mont_384x\$1
-#endif
 	push	%rbp
 .cfi_push	%rbp
 	push	%rbx
@@ -477,10 +473,8 @@ $code.=<<___;
 .align	32
 mul_382x:
 .cfi_startproc
-#ifdef __BLST_PORTABLE__
 	testl	\$1, __blst_platform_cap(%rip)
 	jnz	mul_382x\$1
-#endif
 	push	%rbp
 .cfi_push	%rbp
 	push	%rbx
@@ -612,10 +606,8 @@ $code.=<<___;
 .align	32
 sqr_382x:
 .cfi_startproc
-#ifdef __BLST_PORTABLE__
 	testl	\$1, __blst_platform_cap(%rip)
 	jnz	sqr_382x\$1
-#endif
 	push	%rbp
 .cfi_push	%rbp
 	push	%rbx
@@ -747,10 +739,8 @@ $code.=<<___;
 .align	32
 mul_384:
 .cfi_startproc
-#ifdef __BLST_PORTABLE__
 	testl	\$1, __blst_platform_cap(%rip)
 	jnz	mul_384\$1
-#endif
 	push	%rbp
 .cfi_push	%rbp
 	push	%rbx
@@ -1213,10 +1203,8 @@ $code.=<<___;
 .align	32
 sqr_384:
 .cfi_startproc
-#ifdef __BLST_PORTABLE__
 	testl	\$1, __blst_platform_cap(%rip)
 	jnz	sqr_384\$1
-#endif
 	push	%rbp
 .cfi_push	%rbp
 	push	%rbx
@@ -1456,10 +1444,8 @@ $code.=<<___;
 .align	32
 sqr_mont_384:
 .cfi_startproc
-#ifdef __BLST_PORTABLE__
 	testl	\$1, __blst_platform_cap(%rip)
 	jnz	sqr_mont_384\$1
-#endif
 	push	%rbp
 .cfi_push	%rbp
 	push	%rbx
@@ -1524,10 +1510,8 @@ $code.=<<___;
 .align	32
 redc_mont_384:
 .cfi_startproc
-#ifdef __BLST_PORTABLE__
 	testl	\$1, __blst_platform_cap(%rip)
 	jnz	redc_mont_384\$1
-#endif
 	push	%rbp
 .cfi_push	%rbp
 	push	%rbx
@@ -1576,10 +1560,8 @@ redc_mont_384:
 .align	32
 from_mont_384:
 .cfi_startproc
-#ifdef __BLST_PORTABLE__
 	testl	\$1, __blst_platform_cap(%rip)
 	jnz	from_mont_384\$1
-#endif
 	push	%rbp
 .cfi_push	%rbp
 	push	%rbx
@@ -1777,10 +1759,8 @@ __redq_tail_mont_384:
 .align	32
 sgn0_pty_mont_384:
 .cfi_startproc
-#ifdef __BLST_PORTABLE__
 	testl	\$1, __blst_platform_cap(%rip)
 	jnz	sgn0_pty_mont_384\$1
-#endif
 	push	%rbp
 .cfi_push	%rbp
 	push	%rbx
@@ -1850,10 +1830,8 @@ sgn0_pty_mont_384:
 .align	32
 sgn0_pty_mont_384x:
 .cfi_startproc
-#ifdef __BLST_PORTABLE__
 	testl	\$1, __blst_platform_cap(%rip)
 	jnz	sgn0_pty_mont_384x\$1
-#endif
 	push	%rbp
 .cfi_push	%rbp
 	push	%rbx
@@ -1979,10 +1957,8 @@ $code.=<<___;
 .align	32
 mul_mont_384:
 .cfi_startproc
-#ifdef __BLST_PORTABLE__
 	testl	\$1, __blst_platform_cap(%rip)
 	jnz	mul_mont_384\$1
-#endif
 	push	%rbp
 .cfi_push	%rbp
 	push	%rbx
@@ -2222,10 +2198,8 @@ $code.=<<___;
 .align	32
 sqr_n_mul_mont_384:
 .cfi_startproc
-#ifdef __BLST_PORTABLE__
 	testl	\$1, __blst_platform_cap(%rip)
 	jnz	sqr_n_mul_mont_384\$1
-#endif
 	push	%rbp
 .cfi_push	%rbp
 	push	%rbx
@@ -2305,10 +2279,8 @@ sqr_n_mul_mont_384:
 .align	32
 sqr_n_mul_mont_383:
 .cfi_startproc
-#ifdef __BLST_PORTABLE__
 	testl	\$1, __blst_platform_cap(%rip)
 	jnz	sqr_n_mul_mont_383\$1
-#endif
 	push	%rbp
 .cfi_push	%rbp
 	push	%rbx
@@ -2561,10 +2533,8 @@ $code.=<<___;
 .align	32
 sqr_mont_382x:
 .cfi_startproc
-#ifdef __BLST_PORTABLE__
 	testl	\$1, __blst_platform_cap(%rip)
 	jnz	sqr_mont_382x\$1
-#endif
 	push	%rbp
 .cfi_push	%rbp
 	push	%rbx
